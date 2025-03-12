@@ -8,7 +8,7 @@ def main():
     # Set the title of the app
     st.title("SimFirm Helper")
     
-    p_type_list = ('Get a plan of action for next round', 'Get a stratgic summary of the current round')
+    p_type_list = ('Get a plan of action for next round', 'Get a stratgic summary of the current round', 'Question')
     p_type_nb = st.radio(
     'Which action would you like to perform',
     p_type_list
@@ -58,10 +58,16 @@ def get_prompt(p_type, round_info, hist_context = ""):
         instructions = """Based on the above context, please perform the following:
 Based on the above context, please perform the following:
 1. Situation Analysis: Identify the key strategic opportunities and risks based on the current financial, market, and operational context.
-2. Action Plan: Detail a concise action plan that addresses immediate challenges and outlines steps for long-term growth and market positioning.
 3. Strategic Plan : Provide your output detailing the current situation. Presenting with bullet points in detail (1) Analysis of the different markets & products (2) Analysis of the Key Success Factors (3) Strategic Objectives (4) Your implementation Plan"""
+    
+    elif p_type == 3:
+        instructions = """Based on the above context, please perform the following:
+Based on the above context, please perform the following:
+1. Situation Analysis: Identify the key strategic opportunities and risks based on the current financial, market, and operational context.
+2. Question answering : Provide a detailed answer to the question asked in Current objectives."""
+
     else:
-        raise ValueError("Invalid prompt type. Please choose 1 (decision making) or 2 (round summary).")
+        raise ValueError("Invalid prompt type. Please choose 1 (decision making) or 2 (round summary) 3(Question).")
     
     return """
     SIMFIRM SIMULATION - STRATEGIC DECISION-MAKING PROMPT
